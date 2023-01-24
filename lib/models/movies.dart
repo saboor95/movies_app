@@ -1,9 +1,13 @@
 class Movies {
   int? page;
   List<Results>? results;
+  List<String>? errors;
+  bool? success;
 
   Movies.fromJson(Map<String, dynamic> json) {
     page = json["page"];
+    errors = json["errors"];
+    success = json["success"];
     if (json["results"] != null) {
       results = [];
       json["results"].forEach((v) {
@@ -23,6 +27,7 @@ class Results {
   String? title;
   bool? video;
   String? voteAverage;
+  String? original_title;
 
   Results.fromJson(Map<String, dynamic> json) {
     backdropPath = json["backdrop_path"];
@@ -34,5 +39,6 @@ class Results {
     title = json["title"];
     video = json["video"];
     voteAverage = json["vote_average"].toString();
+    original_title = json["original_title"].toString();
   }
 }
