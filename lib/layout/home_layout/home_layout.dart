@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import '../../screens/browse/browse_tab.dart';
+import '../../screens/home/home_tab.dart';
+import '../../screens/search/search_tab.dart';
+import '../../screens/watchlist/watchlist_tab.dart';
 import '../../shared/styles/colors.dart';
-import '../browse/browse_tab.dart';
-import '../home/home_tab.dart';
-import '../search/search_tab.dart';
-import '../watchlist/watchlist_tab.dart';
 
 
-class HomeScreen extends StatefulWidget {
+
+class HomeLayout extends StatefulWidget {
   static const String routeName='home';
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeLayout> createState() => _HomeLayoutState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
