@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/base.dart';
 import 'package:movies_app/models/movies.dart';
-import 'package:movies_app/screens/search/search_navigator.dart';
+import 'package:movies_app/screens/search/search_screan_view/search_navigator.dart';
 import 'package:movies_app/screens/search/search_view_model.dart';
 import 'package:movies_app/screens/search/search_screan_view/searching_item.dart';
 import 'package:movies_app/shared/network/remote/api_manager.dart';
@@ -31,8 +31,8 @@ class _SearchTabState extends BaseView<SearchViewModel, SearchTab>
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
             child: TextFormField(
               onChanged: (value) {
                 text = value;
