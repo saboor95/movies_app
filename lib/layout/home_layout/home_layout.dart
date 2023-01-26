@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../screens/browse/browse_tab.dart';
 import '../../screens/home/home_tab.dart';
-import '../../screens/search/search_tab.dart';
+import '../../screens/search/search_screan_view/search_tab.dart';
 import '../../screens/watchlist/watchlist_tab.dart';
 import '../../shared/styles/colors.dart';
 

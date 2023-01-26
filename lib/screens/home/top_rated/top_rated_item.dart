@@ -33,7 +33,7 @@ class TopRatedItem extends StatelessWidget {
             child: Container(
               color: COLORDARKGREY,
               child: Padding(
-                padding: const EdgeInsets.only(top: 5,left: 3),
+                padding: EdgeInsets.only(top: 5, left: 3),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -56,7 +56,7 @@ class TopRatedItem extends StatelessWidget {
                     ),
                     SizedBox(height: 3),
                     Padding(
-                      padding: const EdgeInsets.only(left: 4),
+                      padding: EdgeInsets.only(left: 4),
                       child: Text(
                         topMovies!.results!.elementAt(index).title ?? '',
                         maxLines: 1,
@@ -69,7 +69,7 @@ class TopRatedItem extends StatelessWidget {
                     ),
                     SizedBox(height: 3),
                     Padding(
-                      padding: const EdgeInsets.only(left: 4),
+                      padding: EdgeInsets.only(left: 4),
                       child: Text(
                         topMovies!.results!.elementAt(index).releaseDate ?? '',
                         textAlign: TextAlign.start,

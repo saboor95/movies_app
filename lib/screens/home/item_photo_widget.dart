@@ -27,10 +27,10 @@ class ItemPhotoWidget extends StatelessWidget {
           },
           child: Image.network(
             'https://image.tmdb.org/t/p/w500'
-                '${movies!.results!.elementAt(index).posterPath}',
+            '${movies!.results!.elementAt(index).posterPath}',
             fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width*0.3,
-            height: MediaQuery.of(context).size.height*0.22,
+            width: MediaQuery.of(context).size.width * 0.3,
+            height: MediaQuery.of(context).size.height * 0.22,
           ),
         ),
         InkWell(
@@ -40,9 +40,9 @@ class ItemPhotoWidget extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child:
-            provider.idList.contains(movies!.results!.elementAt(index).id)
-                ? Image.asset('assets/images/check.png')
-                : Image.asset('assets/images/bookmark.png'),
+                provider.idList.contains(movies!.results!.elementAt(index).id)
+                    ? Image.asset('assets/images/check.png')
+                    : Image.asset('assets/images/bookmark.png'),
           ),
         ),
       ],

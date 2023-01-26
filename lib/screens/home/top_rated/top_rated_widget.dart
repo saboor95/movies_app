@@ -14,10 +14,10 @@ class TopRatedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height*0.37,
+      height: 300,
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-      color:COLORDARK,
+      color: COLORDARK,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

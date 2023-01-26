@@ -18,7 +18,6 @@ class ApiManager {
       throw e;
     }
   }
-
   static Future<ReleaseModel> getNewRelease() async {
     final response = await http.get(
       Uri.parse(
@@ -63,6 +62,18 @@ class ApiManager {
       return similarResponse;
     } else {
       throw e;
+    }
+  }
+
+  static Future<Movies> getSearchingAbout(String query) async {
+    var response = await http.get(
+      Uri.parse('https://$BASE/3/search/movie?api_key=$APIKEY&query=$query'),
+    );
+    var movieResponse = Movies.fromJson(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      return movieResponse;
+    } else {
+      throw Exception('Failed to load album');
     }
   }
 }
