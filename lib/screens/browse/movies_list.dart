@@ -31,6 +31,12 @@ class MoviesListScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           }
+          if (snapshot.hasError) {
+            return Center(
+              child: Text('${snapshot.error ?? "has error"}',
+                  style: TextStyle(color: Colors.white)),
+            );
+          }
           return ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 30),
             separatorBuilder: (context, index) {

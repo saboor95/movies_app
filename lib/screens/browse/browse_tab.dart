@@ -36,24 +36,17 @@ class _BrowseTabState extends BaseView<BrowseViewModel,
                 color: Colors.white,
               ),),
             FutureBuilder<ReleaseModel>(
-                future: ApiManager.getNewRelease(),
+                future: ApiManager.getCategory(),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState ==
-                      ConnectionState.waiting) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
                   }
                   if (snapshot.hasError) {
                     return Center(
-                      child: Text(snapshot.data?.status_message ??
-                          "Something went Wrong"),
-                    );
-                  }
-                  if (snapshot.data?.success == false) {
-                    return Center(
-                      child: Text(snapshot.data?.status_message ??
-                          "Something went Wrong"),
+                      child: Text('${snapshot.error ?? "has error"}',
+                          style: TextStyle(color: Colors.white)),
                     );
                   }
                   var movieGenres = snapshot.data?.genres ?? [];

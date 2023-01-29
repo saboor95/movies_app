@@ -1,13 +1,13 @@
 class Movies {
   int? page;
   List<Results>? results;
-  List<String>? errors;
   bool? success;
+  String? message;
 
   Movies.fromJson(Map<String, dynamic> json) {
     page = json["page"];
-    errors = json["errors"];
     success = json["success"];
+    message = json["status_message"];
     if (json["results"] != null) {
       results = [];
       json["results"].forEach((v) {

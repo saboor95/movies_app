@@ -30,11 +30,16 @@ class CategoryItem extends StatelessWidget {
                   ),
                 );
               }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text('${snapshot.error ?? "has error"}',
+                      style: TextStyle(color: Colors.white)),
+                );
+              }
               return CachedNetworkImage(
                   imageUrl: "https://image.tmdb.org/t/p/w500"
                       "${snapshot.data!.results!.elementAt(4).backdropPath}",
-                  imageBuilder: (context, imageProvider) =>
-                      Container(
+                  imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           image: DecorationImage(
