@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
+import '../../../models/movie_details.dart';
 import '../../../models/movies.dart';
 import '../../../models/release.dart';
 import '../../constants/constants.dart';
@@ -68,6 +69,31 @@ class ApiManager {
   static Future<Movies> getSearchingAbout(String query) async {
     var response = await http.get(
       Uri.parse('https://$BASE/3/search/movie?api_key=$APIKEY&query=$query'),
+    );
+    var movieResponse = Movies.fromJson(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      return movieResponse;
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
+
+  static Future<MovieDetails> getMovieDetails(int movieId) async {
+    var response = await http.get(
+      Uri.parse('https://$BASE/3/movie/$movieId?api_key=$APIKEY'),
+    );
+    var movieResponse = MovieDetails.fromJson(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      return movieResponse;
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
+
+  static Future<Movies> getMoviesByList(int genreId) async {
+    var response = await http.get(
+      Uri.parse(
+          "https://$BASE/3/discover/movie?api_key=$APIKEY&language=en-US&with_genres=$genreId"),
     );
     var movieResponse = Movies.fromJson(jsonDecode(response.body));
     if (response.statusCode == 200) {
