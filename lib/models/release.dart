@@ -1,7 +1,9 @@
 class ReleaseModel {
   List<Genres>? genres;
+  String? status_message;
+  bool? success;
 
-  ReleaseModel({this.genres});
+  ReleaseModel({this.genres, this.status_message});
 
   ReleaseModel.fromJson(dynamic json) {
     if (json["genres"] != null) {
@@ -10,6 +12,8 @@ class ReleaseModel {
         genres?.add(Genres.fromJson(v));
       });
     }
+    status_message = json["status_message"];
+    success = json["success"];
   }
 }
 

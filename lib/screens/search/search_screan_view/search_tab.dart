@@ -93,25 +93,15 @@ class _SearchTabState extends BaseView<SearchViewModel, SearchTab>
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return Center(
-                            child: CircularProgressIndicator(),
+                            child: CircularProgressIndicator(
+                              color: COLORYELLOW,
+                            ),
                           );
                         }
                         if (snapshot.hasError) {
-                          return ListView.builder(
-                            itemCount: snapshot.data?.errors?.length,
-                            itemBuilder: (context, index) {
-                              return Text(
-                                  snapshot.data!.errors?[index] ?? "Has Error");
-                            },
-                          );
-                        }
-                        if (snapshot.data?.success == false) {
-                          return ListView.builder(
-                            itemCount: snapshot.data?.errors?.length,
-                            itemBuilder: (context, index) {
-                              return Text(
-                                  snapshot.data!.errors?[index] ?? "Has Error");
-                            },
+                          return Center(
+                            child: Text('${snapshot.error ?? "has error"}',
+                                style: TextStyle(color: Colors.white)),
                           );
                         }
                         var movies = snapshot.data?.results ?? [];

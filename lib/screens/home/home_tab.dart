@@ -38,9 +38,13 @@ class _HomeTabState extends State<HomeTab> {
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
-                      child: Text(
-                        'error => ${snapshot.error}',
-                        style: TextStyle(color: Colors.white),
+                      child: Container(
+                        height: size.height * .3,
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
+                          'error => ${snapshot.error}',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     );
                   } else if (snapshot.connectionState ==
@@ -77,10 +81,13 @@ class _HomeTabState extends State<HomeTab> {
                     return NewRelaseWidget(snapshot.data);
                   } else if (snapshot.hasError) {
                     return Center(
-                        child: Text(
-                          '${snapshot.error}',
-                          style: TextStyle(color: Colors.white),
-                        ));
+                        child: Container(
+                      height: size.height * .3,
+                      child: Text(
+                        '${snapshot.error}',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ));
                   }
                   return Center(
                       child: const CircularProgressIndicator(
@@ -95,10 +102,13 @@ class _HomeTabState extends State<HomeTab> {
                     return TopRatedWidget(snapshot.data);
                   } else if (snapshot.hasError) {
                     return Center(
-                        child: Text(
-                          '${snapshot.error}',
-                          style: TextStyle(color: Colors.white),
-                        ));
+                        child: Container(
+                      height: size.height * .3,
+                      child: Text(
+                        '${snapshot.error}',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ));
                   }
                   return Center(
                       child: const CircularProgressIndicator(
