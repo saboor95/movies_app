@@ -25,13 +25,25 @@ class ItemPhotoWidget extends StatelessWidget {
               ),
             );
           },
-          child: Image.network(
-            'https://image.tmdb.org/t/p/w500'
-            '${movies!.results!.elementAt(index).posterPath}',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * 0.3,
-            height: MediaQuery.of(context).size.height * 0.22,
-          ),
+          child: movies!.results!.elementAt(index).posterPath == null
+              ? Container(
+                  height: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.height * 0.22,
+                  child: Center(
+                    child: Icon(
+                      Icons.error_outline,
+                      size: 35,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : Image.network(
+                  'https://image.tmdb.org/t/p/w500'
+                  '${movies!.results!.elementAt(index).posterPath}',
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.22,
+                ),
         ),
         InkWell(
           onTap: () {
