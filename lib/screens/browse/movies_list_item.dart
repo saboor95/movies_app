@@ -8,70 +8,50 @@ import '../home/movie_details/details_screen.dart';
 
 class MoviesListItem extends StatelessWidget {
   static const String routeName = 'movies list';
-  Results moviesResult;
+  List<Results> moviesResult;
+  int index;
 
-  MoviesListItem(this.moviesResult);
+  MoviesListItem(this.moviesResult, this.index);
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<MyProvider>(context);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8),
       width: double.infinity,
       height: 95,
       child: Row(
         children: [
-          Stack(
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          DetailsScreen(moviesResult),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => DetailsScreen(
+                      moviesResult.elementAt(index),
+                      index: index),
+                ),
+              );
+            },
+            child: moviesResult.elementAt(index).backdropPath == null
+                ? Container(
+                    height: MediaQuery.of(context).size.width * 0.3,
+                    width: MediaQuery.of(context).size.height * 0.22,
+                    child: Icon(
+                      Icons.error_outline,
+                      size: 35,
+                      color: Colors.white,
                     ),
-                  );
-                },
-                child: moviesResult.backdropPath == null
-                    ? Container(
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.3,
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.22,
-                  child: Icon(
-                    Icons.error_outline,
-                    size: 35,
-                    color: Colors.white,
+                  )
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image.network(
+                      'https://image.tmdb.org/t/p/w500'
+                      '${moviesResult.elementAt(index).backdropPath}',
+                      fit: BoxFit.cover,
+                      width: 150,
+                      height: 100,
+                    ),
                   ),
-                )
-                    : ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: Image.network(
-                    'https://image.tmdb.org/t/p/w500'
-                        '${moviesResult.backdropPath}',
-                    fit: BoxFit.cover,
-                    width: 150,
-                    height: 100,
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  provider.selectMovie(moviesResult);
-                },
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: provider.idList.contains(moviesResult.id)
-                      ? Image.asset('assets/images/check.png')
-                      : Image.asset('assets/images/bookmark.png'),
-                ),
-              ),
-            ],
           ),
           SizedBox(width: 10),
           Expanded(
@@ -80,7 +60,7 @@ class MoviesListItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  moviesResult.title ?? '',
+                  moviesResult.elementAt(index).title ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -90,7 +70,7 @@ class MoviesListItem extends StatelessWidget {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  moviesResult.releaseDate ?? '',
+                  moviesResult.elementAt(index).releaseDate ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -100,7 +80,7 @@ class MoviesListItem extends StatelessWidget {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  moviesResult.overview ?? '',
+                  moviesResult.elementAt(index).overview ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
