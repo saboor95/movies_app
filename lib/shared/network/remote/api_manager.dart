@@ -18,7 +18,6 @@ class ApiManager {
       throw Exception('Failed to load the popular');
     }
   }
-
   static Future<ReleaseModel> getCategory() async {
     final response = await http.get(
       Uri.parse(

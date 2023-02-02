@@ -41,4 +41,18 @@ class Results {
     voteAverage = json["vote_average"].toString();
     original_title = json["original_title"].toString();
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "poster_path": posterPath,
+      "overview": overview,
+      "id": id,
+      "title": title,
+      "release_date": releaseDate,
+      "original_title": original_title,
+      "video": video,
+      "genre_ids": genreIds,
+      "backdrop_path": backdropPath
+    };
+  }
 }

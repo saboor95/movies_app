@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:movies_app/screens/home/bookmark_widget.dart';
+import 'package:movies_app/shared/network/local/firebase_utils.dart';
 import '../../models/movies.dart';
-import '../../provider/my_provider.dart';
 import 'movie_details/details_screen.dart';
 
 class ItemPhotoWidget extends StatelessWidget {
@@ -12,7 +12,6 @@ class ItemPhotoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<MyProvider>(context);
     return Stack(
       children: [
         InkWell(
@@ -20,30 +19,53 @@ class ItemPhotoWidget extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    DetailsScreen(movies!.results!.elementAt(index)),
+                builder: (BuildContext context) => DetailsScreen(
+                    movies!.results!.elementAt(index),
+                    index: index),
               ),
             );
           },
-          child: Image.network(
-            'https://image.tmdb.org/t/p/w500'
-            '${movies!.results!.elementAt(index).posterPath}',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * 0.3,
-            height: MediaQuery.of(context).size.height * 0.22,
-          ),
+          child: movies!.results!.elementAt(index).posterPath == null
+              ? Container(
+                  height: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.height * 0.22,
+                  child: Center(
+                    child: Icon(
+                      Icons.error_outline,
+                      size: 35,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : Image.network(
+                  'https://image.tmdb.org/t/p/w500'
+                  '${movies!.results!.elementAt(index).posterPath}',
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.22,
+                ),
         ),
-        InkWell(
-          onTap: () {
-            provider.selectMovie(movies!.results!.elementAt(index));
+        StreamBuilder(
+          stream: DatabaseUtils.getMovieFromFirebase(),
+          builder: (context, snapshot) {
+            late bool isSelected;
+            var moviesResult =
+                snapshot.data?.docs.map((doc) => doc.data()).toList() ?? [];
+            if (moviesResult.isEmpty) {
+              return BookmarkWidget(movies!.results!.elementAt(index), false);
+            }
+            for (int x = 0; x < moviesResult.length; x++) {
+              if (moviesResult.elementAt(x).id ==
+                  movies!.results!.elementAt(index).id) {
+                isSelected = true;
+                break;
+              } else {
+                isSelected = false;
+              }
+            }
+            return BookmarkWidget(
+                movies!.results!.elementAt(index), isSelected);
           },
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child:
-                provider.idList.contains(movies!.results!.elementAt(index).id)
-                    ? Image.asset('assets/images/check.png')
-                    : Image.asset('assets/images/bookmark.png'),
-          ),
         ),
       ],
     );

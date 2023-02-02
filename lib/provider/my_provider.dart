@@ -1,24 +1,16 @@
 import 'package:flutter/cupertino.dart';
+import 'package:movies_app/shared/network/local/firebase_utils.dart';
 import '../models/movies.dart';
 
 class MyProvider extends ChangeNotifier {
-  List<Results> watchList = [];
-  List<int> idList = [];
-  Map<int, Results> list = {};
 
   void selectMovie(Results resultsMovie) {
-    if (!idList.contains(resultsMovie.id)) {
-      watchList.add(resultsMovie);
-      idList.add(resultsMovie.id!);
-      print('${idList}');
-      print('${watchList}');
-    } else if (idList.contains(resultsMovie.id)) {
-      idList.remove(resultsMovie.id);
-      watchList.removeWhere((element) => element.id == resultsMovie.id);
-      print('${idList}');
-      print('${watchList}');
-      print('unselect item');
-    }
+    DatabaseUtils.addMovieToFirebase(resultsMovie);
+    notifyListeners();
+  }
+
+  void unSelectMovie(Results resultsMovie) {
+    DatabaseUtils.deleteMovieFromFirebase(resultsMovie.id!);
     notifyListeners();
   }
 }

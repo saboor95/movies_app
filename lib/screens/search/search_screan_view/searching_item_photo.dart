@@ -19,8 +19,9 @@ class SearchingItemPhoto extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      DetailsScreen(movies!.results!.elementAt(index)),
+                  builder: (BuildContext context) => DetailsScreen(
+                      movies!.results!.elementAt(index),
+                      index: index),
                 ),
               );
             },

@@ -49,7 +49,7 @@ class MoviesListScreen extends StatelessWidget {
             },
             itemCount: snapshot.data!.results!.length,
             itemBuilder: (context, index) {
-              return MoviesListItem(snapshot.data!.results![index]);
+              return MoviesListItem(snapshot.data!.results!, index);
             },);
         },),
     );
