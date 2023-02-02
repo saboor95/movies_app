@@ -41,7 +41,6 @@ class CategoryItem extends StatelessWidget {
                       "${snapshot.data!.results!.elementAt(4).backdropPath}",
                   imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
                           image: DecorationImage(
                             image: imageProvider,
                             fit: BoxFit.cover,

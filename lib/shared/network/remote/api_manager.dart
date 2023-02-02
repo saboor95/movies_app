@@ -18,18 +18,7 @@ class ApiManager {
       throw Exception('Failed to load the popular');
     }
   }
-  static Future<ReleaseModel> getCategory() async {
-    final response = await http.get(
-      Uri.parse(
-          'https://$BASE/3/genre/movie/list?api_key=$APIKEY&adult=false&language=en-US'),
-    );
-    var releaseResponse = ReleaseModel.fromJson(jsonDecode(response.body));
-    if (response.statusCode == 200) {
-      return releaseResponse;
-    } else {
-      throw Exception('Failed to load the category');
-    }
-  }
+
   static Future<Movies> getTopRated() async {
     var response = await http.get(
       Uri.parse(
@@ -42,6 +31,8 @@ class ApiManager {
       throw Exception('Failed to load the top rated');
     }
   }
+
+
   static Future<Movies> getSimilar(int movieId) async {
     var header = '/3/movie/$movieId/similar';
     Uri url = Uri.https(
@@ -65,6 +56,7 @@ class ApiManager {
     }
   }
 
+
   static Future<Movies> getSearchingAbout(String query) async {
     var response = await http.get(
       Uri.parse(
@@ -78,6 +70,7 @@ class ApiManager {
     }
   }
 
+
   static Future<MovieDetails> getMovieDetails(int movieId) async {
     var response = await http.get(
       Uri.parse('https://$BASE/3/movie/$movieId?api_key=$APIKEY&adult=false&'),
@@ -89,6 +82,21 @@ class ApiManager {
       throw Exception('Failed to load album');
     }
   }
+
+
+  static Future<ReleaseModel> getCategory() async {
+    final response = await http.get(
+      Uri.parse(
+          'https://$BASE/3/genre/movie/list?api_key=$APIKEY&adult=false&language=en-US'),
+    );
+    var releaseResponse = ReleaseModel.fromJson(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      return releaseResponse;
+    } else {
+      throw Exception('Failed to load the category');
+    }
+  }
+
 
   static Future<Movies> getMoviesByList(int genreId) async {
     var response = await http.get(

@@ -31,7 +31,7 @@ class _SearchTabState extends BaseView<SearchViewModel, SearchTab>
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
             child: TextFormField(
               onChanged: (value) {
@@ -58,26 +58,25 @@ class _SearchTabState extends BaseView<SearchViewModel, SearchTab>
                 filled: true,
                 hintText: 'Search',
                 hintStyle: TextStyle(
-                  color: Colors.white70,
+                  color: COLORGREY,
                   fontSize: 14,
                 ),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                     borderSide: BorderSide(
-                      color: Colors.white70,
+                      color: COLORGREY,
                       width: .5,
                     )),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25)),
                   borderSide: BorderSide(
-                    color: Colors.white70,
-                    width: .5,
+                    color: COLORGREY,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(25)),
                   borderSide: BorderSide(
-                    color: Colors.white,
+                    color: COLORGREY,
                     width: .6,
                   ),
                 ),
@@ -114,7 +113,7 @@ class _SearchTabState extends BaseView<SearchViewModel, SearchTab>
                           },
                           separatorBuilder: (BuildContext context, int index) {
                             return Divider(
-                              color: Colors.white70,
+                              color: COLORGREY,
                               thickness: 1,
                               indent: 0,
                               endIndent: 0,

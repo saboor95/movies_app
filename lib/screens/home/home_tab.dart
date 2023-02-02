@@ -7,6 +7,8 @@ import '../../models/movies.dart';
 import '../../shared/network/remote/api_manager.dart';
 import 'new_release/new_release_widget.dart';
 
+
+
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
 
@@ -21,11 +23,10 @@ class _HomeTabState extends State<HomeTab> {
   void initState() {
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
+    return  Scaffold(
       backgroundColor: COLORBACKGROUND,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -90,8 +91,8 @@ class _HomeTabState extends State<HomeTab> {
                   }
                   return Center(
                       child: const CircularProgressIndicator(
-                    color: Color.fromRGBO(255, 187, 59, 1.0),
-                  ));
+                        color: Color.fromRGBO(255, 187, 59, 1.0),
+                      ));
                 },
               ),
               FutureBuilder<Movies>(
@@ -111,8 +112,8 @@ class _HomeTabState extends State<HomeTab> {
                   }
                   return Center(
                       child: const CircularProgressIndicator(
-                    color: Color.fromRGBO(255, 187, 59, 1.0),
-                  ));
+                        color: Color.fromRGBO(255, 187, 59, 1.0),
+                      ));
                 },
               ),
             ],
@@ -122,3 +123,5 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 }
+
+

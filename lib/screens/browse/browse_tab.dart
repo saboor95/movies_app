@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/screens/browse/browse_view_model.dart';
 import 'package:movies_app/screens/browse/category_item.dart';
-import 'package:movies_app/screens/browse/movies_list.dart';
-
 import '../../base.dart';
 import '../../models/release.dart';
 import '../../shared/network/remote/api_manager.dart';
@@ -22,25 +20,34 @@ class _BrowseTabState extends BaseView<BrowseViewModel,
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: COLORBACKGROUND,
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+    return Scaffold(
+      backgroundColor: COLORBACKGROUND,
+      appBar: AppBar(
+        title: Container(
+          margin: EdgeInsets.only(top: 18),
+          child: Text('Browse Category',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),),
+        ),
+        titleSpacing: 10,
+        toolbarHeight:45,
+        backgroundColor: COLORBACKGROUND,
+        elevation: 0.0,
+      ),
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Browse Category',
-              style: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),),
             FutureBuilder<ReleaseModel>(
                 future: ApiManager.getCategory(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        color: COLORYELLOW,
+                      ),
                     );
                   }
                   if (snapshot.hasError) {
@@ -55,7 +62,8 @@ class _BrowseTabState extends BaseView<BrowseViewModel,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           mainAxisSpacing: 30,
-                          crossAxisSpacing: 30
+                          crossAxisSpacing: 30,
+                        childAspectRatio: 2/1
                       ),
                       itemCount: movieGenres.length,
                       itemBuilder: (context, index) {

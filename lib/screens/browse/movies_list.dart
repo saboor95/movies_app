@@ -15,6 +15,7 @@ class MoviesListScreen extends StatelessWidget {
         ?.settings
         .arguments as Genres;
     return Scaffold(
+      backgroundColor: COLORBACKGROUND,
       appBar: AppBar(
         title: Text('${genre.name}',
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
@@ -24,7 +25,7 @@ class MoviesListScreen extends StatelessWidget {
         titleSpacing: 10,
         toolbarHeight: 45,
       ),
-      backgroundColor: COLORBACKGROUND,
+
       body: FutureBuilder<Movies>(
         future: ApiManager.getMoviesByList(genre.id!),
         builder: (context, snapshot) {

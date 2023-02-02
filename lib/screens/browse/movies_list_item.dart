@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/models/movies.dart';
 import 'package:movies_app/provider/my_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../../shared/styles/colors.dart';
 import '../home/movie_details/details_screen.dart';
 
@@ -18,7 +17,7 @@ class MoviesListItem extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8),
       width: double.infinity,
-      height: 95,
+      height: 100,
       child: Row(
         children: [
           InkWell(
